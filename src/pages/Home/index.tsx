@@ -1,11 +1,7 @@
-import Card from '../../components/Card'
+import HomeCard from '../../components/HomeCard'
 
 const Home = () => {
-  return (
-    <>
-      <Card cardType="HomeCard" />
-    </>
-  )
+  return <HomeCard />
 }
 
 export default Home

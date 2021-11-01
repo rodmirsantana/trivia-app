@@ -1,7 +1,10 @@
-import { FormEvent } from 'react'
+import React, { FormEvent, Suspense, useState } from 'react'
+
 import Button from '../Button'
-import CardHeader from '../CardHeader'
-import * as S from './styles'
+const CardHeader = React.lazy(() => import('../CardHeader'))
+const Question = React.lazy(() => import('./styles'))
+
+import { Container, ButtonsWrapper } from './styles'
 interface Question {
   category: string
   question: string
@@ -20,15 +23,22 @@ const QuestionCard = ({
   handleAnswerQuestion,
   question
 }: QuestionCardProps) => {
+  const [isButtonActive, setIsButtonActive] = useState('false')
+
   return (
-    <S.Container onSubmit={handleAnswerQuestion}>
-      <CardHeader>{question.category}</CardHeader>
-      <S.Question>{question.question}</S.Question>
-      <S.ButtonsWrapper>
+    <Container onSubmit={handleAnswerQuestion}>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <CardHeader>{question.category}</CardHeader>
+        <Question>{question.question}</Question>
+      </Suspense>
+      <ButtonsWrapper>
         <Button
           onClick={() => {
+            setIsButtonActive('true')
             handleSelectedAnswer('True')
+            setIsButtonActive('false')
           }}
+          isActive={isButtonActive}
           type="submit"
           value="True"
         >
@@ -36,14 +46,17 @@ const QuestionCard = ({
         </Button>
         <Button
           onClick={() => {
+            setIsButtonActive('true')
             handleSelectedAnswer('False')
+            setIsButtonActive('false')
           }}
+          isActive={isButtonActive}
           value="False"
         >
           False
         </Button>
-      </S.ButtonsWrapper>
-    </S.Container>
+      </ButtonsWrapper>
+    </Container>
   )
 }
 

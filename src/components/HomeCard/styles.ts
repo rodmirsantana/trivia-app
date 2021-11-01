@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 export const Container = styled.main`
   ${({ theme }) => css`
@@ -7,6 +8,10 @@ export const Container = styled.main`
     margin: 2rem auto;
     padding: 2.5rem 1rem;
     border: 1px solid ${theme.colors.gray};
+    ${media.lessThan('medium')`
+      width: 95%;
+      margin-top: 25vh;
+    `}
   `}
 `
 

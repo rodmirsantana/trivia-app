@@ -14,12 +14,6 @@ export type QuestionProps = {
 const Quiz = () => {
   const history = useHistory()
   const [questionsList, setQuestionsList] = useState<QuestionProps[]>([])
-  const [currentQuestion, setCurrentQuestion] = useState<QuestionProps>({
-    category: '',
-    question: '',
-    correct_answer: '',
-    incorrect_answers: []
-  })
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
 
@@ -37,7 +31,6 @@ const Quiz = () => {
       localStorage.clear()
       localStorage.setItem('@Trivia:questions', JSON.stringify(parsedQuestions))
       setQuestionsList(parsedQuestions)
-      setCurrentQuestion({ ...parsedQuestions[0] })
     })
   }, [])
 
@@ -49,10 +42,8 @@ const Quiz = () => {
       if (currentQuestionIndex === questionsList.length - 1) {
         history.push('/results')
       }
-
-      setCurrentQuestion({ ...questionsList[currentQuestionIndex] })
     },
-    [questionsList, currentQuestionIndex]
+    [questionsList, currentQuestionIndex, history]
   )
 
   const handleSelectedAnswer = useCallback(

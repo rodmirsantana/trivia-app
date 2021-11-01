@@ -17,8 +17,10 @@ const ResultsCard = () => {
 
   useEffect(() => {
     const questions: QuestionProps[] = JSON.parse(
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       localStorage.getItem('@Trivia:questions')!
     )
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const answers = JSON.parse(localStorage.getItem('@Trivia:answers')!)
 
     const questionResults = questions.map((question, index) => ({

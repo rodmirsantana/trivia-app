@@ -3,10 +3,12 @@ import styled, { css } from 'styled-components'
 import { ButtonProps } from '.'
 
 export const Wrapper = styled.button<ButtonProps>`
-  ${({ theme }) => css`
+  ${({ theme, isActive }) => css`
     cursor: pointer;
-    background: ${theme.colors.white};
-    color: ${theme.colors.primary};
+    background: ${isActive === 'true'
+      ? theme.colors.primary
+      : theme.colors.white};
+    color: ${isActive === 'true' ? theme.colors.white : theme.colors.primary};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
     border: 1px solid ${theme.colors.gray};
     border-radius: ${theme.border.radius};

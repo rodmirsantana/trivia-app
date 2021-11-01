@@ -6,8 +6,7 @@ type ButtonTypes =
   | ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ButtonProps = {
-  isActive?: boolean
-  isDisabled?: boolean
+  isActive?: string
   as?: React.ElementType
 } & ButtonTypes
 

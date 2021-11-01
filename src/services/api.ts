@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const api = axios.create({
-  baseURL: 'https://opentdb.com/api.php',
+  baseURL: process.env.REACT_APP_API_URL,
   params: {
     amount: 10,
     type: 'boolean'
