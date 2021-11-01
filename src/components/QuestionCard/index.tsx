@@ -6,12 +6,7 @@ import CardHeader from '../CardHeader'
 
 import * as S from './styles'
 import theme from '../../styles/theme'
-interface Question {
-  category: string
-  question: string
-  correct_answer: string
-  incorrect_answers: string[]
-}
+import { Question } from './interface'
 
 export type QuestionCardProps = {
   isLoading: boolean

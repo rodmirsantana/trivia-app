@@ -5,11 +5,7 @@ import CardHeader from '../CardHeader'
 import * as S from './styles'
 
 import { QuestionProps } from '../../pages/Quiz'
-
-export type Results = {
-  question: string
-  result: string
-}
+import { Results } from './interface'
 
 const ResultsCard = () => {
   const [score, setScore] = useState(0)
