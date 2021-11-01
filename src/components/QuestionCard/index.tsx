@@ -1,46 +1,48 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent } from 'react'
 import Button from '../Button'
 import CardHeader from '../CardHeader'
 import * as S from './styles'
-
-export type QuestionCardProps = {
-  currentQuestion: number
+interface Question {
+  category: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
 }
 
-const QuestionCard = ({ currentQuestion }: QuestionCardProps) => {
-  const [selectedAnswer, setSelectedAnswer] = useState('')
+export type QuestionCardProps = {
+  handleSelectedAnswer: (answer: string) => void
+  handleAnswerQuestion: (event: FormEvent) => void
+  question: Question
+}
 
-  function handleAnswerQuestion(event: FormEvent) {
-    event.preventDefault()
-  }
-
+const QuestionCard = ({
+  handleSelectedAnswer,
+  handleAnswerQuestion,
+  question
+}: QuestionCardProps) => {
   return (
     <S.Container onSubmit={handleAnswerQuestion}>
-      <CardHeader>Question Category Name</CardHeader>
-      <S.Instructions>Here is the question content</S.Instructions>
-      <S.AnswerButtonsWrapper>
+      <CardHeader>{question.category}</CardHeader>
+      <S.Question>{question.question}</S.Question>
+      <S.ButtonsWrapper>
         <Button
           onClick={() => {
-            setSelectedAnswer('true')
+            handleSelectedAnswer('True')
           }}
-          isActive={selectedAnswer === 'true'}
+          type="submit"
           value="True"
         >
           True
         </Button>
         <Button
           onClick={() => {
-            setSelectedAnswer('false')
+            handleSelectedAnswer('False')
           }}
-          isActive={selectedAnswer === 'false'}
           value="False"
         >
           False
         </Button>
-      </S.AnswerButtonsWrapper>
-      <Button isDisabled={!selectedAnswer} type="submit">
-        Next
-      </Button>
+      </S.ButtonsWrapper>
     </S.Container>
   )
 }

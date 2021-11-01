@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.form`
+export const Container = styled.div`
   ${({ theme }) => css`
     text-align: center;
     max-width: 760px;
@@ -10,10 +10,21 @@ export const Container = styled.form`
   `}
 `
 
-export const Question = styled.div`
+export const ResultsWrapper = styled.div`
   ${({ theme }) => css`
+    padding-bottom: 64px;
+  `}
+`
+
+type ResultsProps = {
+  status: 'correct' | 'incorrect'
+}
+
+export const Results = styled.div<ResultsProps>`
+  ${({ theme, status }) => css`
     text-align: center;
-    padding: ${theme.spacings.small};
+    padding: ${theme.spacings.xsmall};
+    color: ${status === 'correct' ? theme.colors.secondary : theme.colors.red};
   `}
 `
 export const ButtonsWrapper = styled.div`

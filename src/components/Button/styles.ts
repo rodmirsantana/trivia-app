@@ -3,10 +3,10 @@ import styled, { css } from 'styled-components'
 import { ButtonProps } from '.'
 
 export const Wrapper = styled.button<ButtonProps>`
-  ${({ theme, isActive, isDisabled }) => css`
+  ${({ theme }) => css`
     cursor: pointer;
-    background: ${isActive ? theme.colors.primary : theme.colors.white};
-    color: ${isActive ? theme.colors.white : theme.colors.primary};
+    background: ${theme.colors.white};
+    color: ${theme.colors.primary};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
     border: 1px solid ${theme.colors.gray};
     border-radius: ${theme.border.radius};
@@ -19,10 +19,9 @@ export const Wrapper = styled.button<ButtonProps>`
 
     transition: filter 0.2s;
 
-    opacity: ${isDisabled ? '0.6' : '1'};
-    pointer-events: ${isDisabled ? 'none' : 'all'};
-
     &:hover {
+      background: ${theme.colors.primary};
+      color: ${theme.colors.white};
       filter: brightness(0.9);
     }
   `}

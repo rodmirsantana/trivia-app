@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Button from '../Button'
 import CardHeader from '../CardHeader'
 import * as S from './styles'
@@ -20,26 +19,6 @@ const Card = ({ cardType }: CardProps) => {
           <Button as="a" href="/quiz" value="Begin">
             Begin
           </Button>
-        </>
-      )}
-      {cardType === 'ResultsCard' && (
-        <>
-          <CardHeader>
-            You scored: <br /> 3 / 10
-          </CardHeader>
-          <S.Instructions>
-            + Unturned originally started as a Roblox game
-          </S.Instructions>
-          <S.Instructions>
-            - Lorem ipsum dolor sit amet omnis paribus
-          </S.Instructions>
-          <S.Instructions>
-            - Lorem ipsum dolor sit amet omnis paribus
-          </S.Instructions>
-          <S.Instructions>
-            + Unturned originally started as a Roblox game
-          </S.Instructions>
-          <Button value="Play again?">Play again?</Button>
         </>
       )}
     </S.Container>
