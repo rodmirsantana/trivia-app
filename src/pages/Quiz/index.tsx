@@ -16,6 +16,7 @@ const Quiz = () => {
   const [questionsList, setQuestionsList] = useState<QuestionProps[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     api.get('/').then((response) => {
@@ -31,6 +32,7 @@ const Quiz = () => {
       localStorage.clear()
       localStorage.setItem('@Trivia:questions', JSON.stringify(parsedQuestions))
       setQuestionsList(parsedQuestions)
+      setIsLoading(false)
     })
   }, [])
 
@@ -72,6 +74,7 @@ const Quiz = () => {
   )
   return (
     <QuestionCard
+      isLoading={isLoading}
       handleSelectedAnswer={handleSelectedAnswer}
       handleAnswerQuestion={handleAnswerQuestion}
       question={{ ...questionsList[currentQuestionIndex] }}

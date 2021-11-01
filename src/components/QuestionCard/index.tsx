@@ -1,10 +1,11 @@
-import React, { FormEvent, Suspense, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
+import { ClipLoader } from 'react-spinners'
 
 import Button from '../Button'
-const CardHeader = React.lazy(() => import('../CardHeader'))
-const Question = React.lazy(() => import('./styles'))
+import CardHeader from '../CardHeader'
 
-import { Container, ButtonsWrapper } from './styles'
+import * as S from './styles'
+import theme from '../../styles/theme'
 interface Question {
   category: string
   question: string
@@ -13,12 +14,14 @@ interface Question {
 }
 
 export type QuestionCardProps = {
+  isLoading: boolean
   handleSelectedAnswer: (answer: string) => void
   handleAnswerQuestion: (event: FormEvent) => void
   question: Question
 }
 
 const QuestionCard = ({
+  isLoading,
   handleSelectedAnswer,
   handleAnswerQuestion,
   question
@@ -26,12 +29,20 @@ const QuestionCard = ({
   const [isButtonActive, setIsButtonActive] = useState('false')
 
   return (
-    <Container onSubmit={handleAnswerQuestion}>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <CardHeader>{question.category}</CardHeader>
-        <Question>{question.question}</Question>
-      </Suspense>
-      <ButtonsWrapper>
+    <S.Container onSubmit={handleAnswerQuestion}>
+      {isLoading ? (
+        <ClipLoader
+          color={theme.colors.secondary}
+          loading={isLoading}
+          size={35}
+        />
+      ) : (
+        <>
+          <CardHeader>{question.category}</CardHeader>
+          <S.Question>{question.question}</S.Question>
+        </>
+      )}
+      <S.ButtonsWrapper>
         <Button
           onClick={() => {
             setIsButtonActive('true')
@@ -55,8 +66,8 @@ const QuestionCard = ({
         >
           False
         </Button>
-      </ButtonsWrapper>
-    </Container>
+      </S.ButtonsWrapper>
+    </S.Container>
   )
 }
 

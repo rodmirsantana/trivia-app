@@ -22,13 +22,12 @@ export const Container = styled.form`
   `}
 `
 
-const Question = styled.div`
+export const Question = styled.div`
   ${({ theme }) => css`
     text-align: center;
     padding: ${theme.spacings.small};
   `}
 `
-export default Question as React.FC
 
 export const ButtonsWrapper = styled.div`
   ${({ theme }) => css`

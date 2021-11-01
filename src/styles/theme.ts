@@ -23,7 +23,7 @@ export default {
   },
   colors: {
     primary: '#3d55ed',
-    secondary: '#3CD3C1',
+    secondary: '#36D7B7',
     mainBg: '#3490f3',
     lightBg: '#F2F2F2',
     white: '#FFFFFF',
