@@ -6,14 +6,11 @@ type ButtonTypes =
   | ButtonHTMLAttributes<HTMLButtonElement>
 
 export type ButtonProps = {
-  isActive?: string
   as?: React.ElementType
 } & ButtonTypes
 
-const Button = ({ children, isActive, ...props }: ButtonProps) => (
-  <S.Wrapper isActive={isActive} {...props}>
-    {!!children && <span>{children}</span>}
-  </S.Wrapper>
+const Button = ({ children, ...props }: ButtonProps) => (
+  <S.Wrapper {...props}>{!!children && <span>{children}</span>}</S.Wrapper>
 )
 
 export default Button
