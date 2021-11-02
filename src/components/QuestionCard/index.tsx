@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent } from 'react'
 import { ClipLoader } from 'react-spinners'
 
 import Button from '../Button'
@@ -21,8 +21,6 @@ const QuestionCard = ({
   handleAnswerQuestion,
   question
 }: QuestionCardProps) => {
-  const [isButtonActive, setIsButtonActive] = useState('false')
-
   return (
     <S.Container onSubmit={handleAnswerQuestion}>
       {isLoading ? (
@@ -40,11 +38,8 @@ const QuestionCard = ({
       <S.ButtonsWrapper>
         <Button
           onClick={() => {
-            setIsButtonActive('true')
             handleSelectedAnswer('True')
-            setIsButtonActive('false')
           }}
-          isActive={isButtonActive}
           type="submit"
           value="True"
         >
@@ -52,11 +47,8 @@ const QuestionCard = ({
         </Button>
         <Button
           onClick={() => {
-            setIsButtonActive('true')
             handleSelectedAnswer('False')
-            setIsButtonActive('false')
           }}
-          isActive={isButtonActive}
           value="False"
         >
           False

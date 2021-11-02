@@ -1,14 +1,13 @@
 import styled, { css } from 'styled-components'
+import media from 'styled-media-query'
 
 import { ButtonProps } from '.'
 
 export const Wrapper = styled.button<ButtonProps>`
-  ${({ theme, isActive }) => css`
+  ${({ theme }) => css`
     cursor: pointer;
-    background: ${isActive === 'true'
-      ? theme.colors.primary
-      : theme.colors.white};
-    color: ${isActive === 'true' ? theme.colors.white : theme.colors.primary};
+    background: ${theme.colors.white};
+    color: ${theme.colors.primary};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
     border: 1px solid ${theme.colors.gray};
     border-radius: ${theme.border.radius};
@@ -21,10 +20,19 @@ export const Wrapper = styled.button<ButtonProps>`
 
     transition: filter 0.2s;
 
-    &:hover {
-      background: ${theme.colors.primary};
-      color: ${theme.colors.white};
-      filter: brightness(0.9);
-    }
+    ${media.lessThan('medium')`
+      &:active {
+        background: ${theme.colors.primary};
+        color: ${theme.colors.white};
+      }
+    `}
+
+    ${media.greaterThan('medium')`
+      &:hover {
+        background: ${theme.colors.primary};
+        color: ${theme.colors.white};
+        filter: brightness(0.9);
+      }
+    `}
   `}
 `
