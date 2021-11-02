@@ -15,15 +15,16 @@ export const Container = styled.div`
   `}
 `
 
-export const ResultsWrapper = styled.div`
+export const ResultsWrapper = styled.ul`
   padding-bottom: 64px;
+  list-style: none;
 `
 
 type ResultsProps = {
   status: 'correct' | 'incorrect'
 }
 
-export const Results = styled.div<ResultsProps>`
+export const Results = styled.li<ResultsProps>`
   ${({ theme, status }) => css`
     text-align: center;
     padding: ${theme.spacings.xsmall};
