@@ -42,7 +42,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint src --max-warnings=0",
-    "test": "jest",
+    "test": "jest --maxWorkers=50%",
+    "test:watch": "jest --watch --maxWorkers=25%",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

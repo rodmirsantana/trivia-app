@@ -22,7 +22,7 @@ const QuestionCard = ({
   question
 }: QuestionCardProps) => {
   return (
-    <S.Container onSubmit={handleAnswerQuestion}>
+    <S.Container data-testid="question-form" onSubmit={handleAnswerQuestion}>
       {isLoading ? (
         <ClipLoader
           color={theme.colors.secondary}
